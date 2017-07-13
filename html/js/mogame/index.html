@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>MyDemo</title>
+    <style> body { margin: 0; background: #cccccc; } </style>
+</head>
+<script type="text/javascript">
+    var global_map = {}
+    function include()
+    {
+        for(var i=0;i<arguments.length;i++)
+        {
+            var path = arguments[i];
+            document.write("<script type='text/javascript' src='src/"+path+"'><\/script>");
+//            if(!global_map[path]){
+//                global_map[path] = 1;
+//                document.write("<script type='text/javascript' src='"+path+"'><\/script>");
+//            }else {
+//                console.log("this path is include:", path);
+//            }sr
+        }
+    }
+    //
+    include("engine/phaser.min.js","soy/config.js", "soy/main.js");
+    //
+    function login_click()
+    {
+        var name = document.getElementById("login_username").value;
+        var pwd = document.getElementById("login_password").value;
+        LOG_DEBUG("login>",name,pwd);
+        main();
+    }
+</script>
+<body>
+    <div class="inputname" style="position:absolute; visibility:visible; left:300px; top:50px">
+        <label class="txt_label">账号</label>
+        <input type="text" class="txt_input" name="username" id="login_username" autocomplete="off" maxlength="18" />
+    </div>
+    <div class="inputpassword" style="position:absolute; visibility:visible; left:300px; top:100px">
+        <label class="txt_label">密码</label>
+        <input type="text" class="txt_input" name="password" id="login_password" autocomplete="off" maxlength="18" />
+    </div>
+    <div class="inputname" style="position:absolute; visibility:visible; left:300px; top:150px; width:100px">
+        <input name= "登录" type="button" onclick="login_click()"/>
+    </div>
+</body>
+</html>

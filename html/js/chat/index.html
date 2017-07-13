@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>聊天室</title>
+</head>
+<script type="text/javascript">
+    var global_map = {}
+    function include()
+    {
+        for(var i=0;i<arguments.length;i++)
+        {
+            var path = arguments[i];
+            document.write("<script type='text/javascript' src='"+path+"'><\/script>");
+//            if(!global_map[path]){
+//                global_map[path] = 1;
+//                document.write("<script type='text/javascript' src='"+path+"'><\/script>");
+//            }else {
+//                console.log("this path is include:", path);
+//            }
+        }
+    }
+    include("soy/config.js", "soy/main.js");
+</script>
+<body>
+</body>
+</html>
