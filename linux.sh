@@ -41,9 +41,9 @@ yum install php php-devel
 yum install php-mysql php-gd php-ldap php-odbc php-pear php-xml php-xmlrpc
 
 yum list installed | grep mysql
-#yum install mysql
+yum install mysql
+yum install mysql-devel
 #yum install mysql-server (无法安装)
-#yum install mysql-devel
 #方法1
 #MariaDB数据库管理系统是MySQL的一个分支，主要由开源社区在维护，采用GPL授权许可。开发这个分支的原因之一是：甲骨文公司收购了MySQL后，有将MySQL闭源的潜在风险，因此社区采用分支的方式来避开这个风险。MariaDB的目的是完全兼容MySQL，包括API和命令行，使之能轻松成为MySQL的代替品。
 #yum install mariadb-server mariadb
@@ -60,4 +60,19 @@ yum list installed | grep mysql
 #(或者)刷新密码:update user set password=password('123456') where user='root';
 #设置远程访问:GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "123456";
 #刷新才会生效:flush privileges;
+
+#source /etc/profile source重载的意思
+#go语言安装
+#方法1
+#yum install go
+#方法2
+#wget https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz
+#tar zxvf go1.8.linux-amd64.tar.gz  -C  /usr/local
+cd ~
+mkdir -p home/goser
+#设置变量
+#vi /etc/profile
+#export GOROOT=/usr/local/go
+#export PATH=$GOROOT/bin:$PATH
+#export GOPATH=~/home/goser/
 
