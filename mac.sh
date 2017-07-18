@@ -41,3 +41,11 @@ Port 10022
 补充：经网友提示，如果端口不是22，不修改config文件，按如下方式也可以：
 
 ssh-copy-id -i ~/.ssh/id_rsa.pub “-p 10022 user@server”
+
+
+
+//修改http访问路径
+1.打开/etc/apache2/httpd.conf文件
+sudo vim /etc/apache2/httpd.conf
+2.找到并修改
+/Library/WebServer/Documents
