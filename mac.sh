@@ -49,3 +49,15 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub “-p 10022 user@server”
 sudo vim /etc/apache2/httpd.conf
 2.找到并修改
 /Library/WebServer/Documents
+/Users/MikeRiy/Home/php_project
+3.重启
+ sudo apachectl restart
+
+//启用php：
+sudo vim /etc/apache2/httpd.conf
+取消这一行前边的注释符号 #
+LoadModule php5_module libexec/apache2/libphp5.so
+重启 Apache
+sudo apachectl restart
+查看 Apache 信息
+<?php phpinfo(); ?>
