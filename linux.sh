@@ -47,13 +47,12 @@ yum install mysql-devel
 #方法1
 #MariaDB数据库管理系统是MySQL的一个分支，主要由开源社区在维护，采用GPL授权许可。开发这个分支的原因之一是：甲骨文公司收购了MySQL后，有将MySQL闭源的潜在风险，因此社区采用分支的方式来避开这个风险。MariaDB的目的是完全兼容MySQL，包括API和命令行，使之能轻松成为MySQL的代替品。
 #yum install mariadb-server mariadb
-#方法2
+#方法2 (可行)
 # wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
 # rpm -ivh mysql-community-release-el7-5.noarch.rpm
 # yum install mysql-community-server
 
 #systemctl restart mysqld
-
 
 #登录mysql: mysql -uroot -p
 #设置mysql密码: mysadmin -u root -p password 123456
@@ -63,7 +62,7 @@ yum install mysql-devel
 
 #source /etc/profile source重载的意思
 #go语言安装
-#方法1
+#方法1 (可行)
 #yum install go
 #方法2
 #wget https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz
@@ -75,4 +74,16 @@ mkdir -p home/goser
 #export GOROOT=/usr/local/go
 #export PATH=$GOROOT/bin:$PATH
 #export GOPATH=~/home/goser/
+
+
+#查看进程
+#top -p 进程号
+#ps -aux | grep 进程号
+#cat /proc/进程号/status
+#1、VmRSS是真实正在占用的内存，而VmData是虚拟内存，大小差异大并没有什么问题。
+#2、VmData是指数据段的内存大小，存放初始化了的数据； (total_vm-shared_vm-stack_vm)
+#3、不调动态库的时候是不计算的(dlopen方式)
+#4、静态库会编译为程序本身的一部分，不在VmLib的统计之内。
+#5、参考上面的说明
+#6、除非有非常明显的内存泄露，如内存一直大幅度增长并长时间不释放，否则单纯以来这些值是很判断真正的内在泄露。
 

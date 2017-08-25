@@ -4,6 +4,18 @@ Mac
 pbcopy < file
 pbpaste > file.name
 
+一，访问单服务
+ssh-keygen -t rsa
+cd ~/.ssh
+cat id_rsa.pub
+#复制
+服务器
+mkdir .ssh
+cd .ssh
+touch authorized_keys
+复制公钥进去就可以了
+
+
 多服务访问
 生成密钥对:
 ssh-keygen -t rsa

@@ -30,8 +30,9 @@ echo "/usr/local/bin/redis-server /etc/redis.conf" >>/etc/rc.local
 
 #停止redis (直接kill 进程)
 redis-cli shutdown
-
-#redis-cli进入客户端
+#进入客户端
+redis-cli
+redis-cli -a 9527123
 
 
 #daemonize：是否以后台daemon方式运行
