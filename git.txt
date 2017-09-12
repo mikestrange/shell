@@ -1,0 +1,7 @@
+本地建立git仓库
+
+git init –bare
+*进行初始化(建议使用–bare,要不然会影响文件的提交)
+
+直接
+git clone path就可以了
