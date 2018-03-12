@@ -78,7 +78,8 @@ mkdir -p home/goser
 
 #查看进程
 #top -p 进程号
-#ps -aux | grep 进程号
+#ps aux | grep 进程号/名称
+#ps -ef | grep   进程名称
 #cat /proc/进程号/status
 #1、VmRSS是真实正在占用的内存，而VmData是虚拟内存，大小差异大并没有什么问题。
 #2、VmData是指数据段的内存大小，存放初始化了的数据； (total_vm-shared_vm-stack_vm)
