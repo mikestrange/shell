@@ -32,7 +32,7 @@ echo "/usr/local/bin/redis-server /etc/redis.conf" >>/etc/rc.local
 redis-cli shutdown
 #进入客户端
 redis-cli
-redis-cli -a 9527123
+redis-cli -a abc123
 
 
 #daemonize：是否以后台daemon方式运行
@@ -62,3 +62,18 @@ systemctl stop redis.service
 systemctl restart redis.service
 检查状态：
 systemctl status redis.service
+
+
+#如果需要redis配置认证密码
+#1.通过配置文件进行配置
+#yum方式安装的redis配置文件通常在/etc/redis.conf中，打开配置文件找到
+#requirepass foobared
+#去掉行前的注释，并修改密码为所需的密码,保存文件
+#requirepass youpwd
+
+#修改配置文件，监听所有的IP地址
+#vi /etc/redis.conf
+#找到下面这一行
+#bind 127.0.0.1
+#注释掉
+#bind 127.0.0.1

@@ -5,3 +5,47 @@ git init –bare
 
 直接
 git clone path就可以了
+
+2、创建Git服务端目录，并赋予第1步选择的用户(组)可读写权限；
+    mkdir sudo /gitProj/test.git
+    cd /gitProj/test.git
+    sudo git init --bare
+    cd /gitProj
+    sudo chmod -R g+ws * 
+    sudo chgrp -R git * 
+    cd test.git 
+    sudo git config core.sharedRepository group
+
+3、测试一下，通过SSH远程操作Git库；
+    git clone test@192.168.1.100:/gitProj/test.git
+    cd test
+    touch tmp.m
+    git add -A *
+    git commit -am "add tmp.m"
+    git push origin master
+    注：test是用户名，192.168.1.100是服务端IP，/gitProj/test.git是第2步创建的Git服务端目录。
+
+------------------------------------------------
+clone、push命令会要求输入密码，若想免密码访问 
+ 1、在客户端生成公钥和私钥 
+    cd ~/.ssh
+    ssh-keygen -t rsa
+    回车两次，生成id_rsa 和 id_rsa.pub
+
+ 2、发送公钥到服务端 
+    scp id_rsa.pub test@192.168.1.100:~/.ssh 
+
+ 3、SSH登陆服务端，设置公钥文件
+    ssh test@192.168.1.100 
+    cd ~/.ssh
+    cat id_rsa.pub >> authorized_keys 
+    chmod 600 authorized_keys 
+    注：必须设置成600 
+
+ 4、配置ssh config文件
+    open ~/.ssh/config 
+    加入以下内容： 
+    Host git.server                    # 别名 
+    HostName 192.168.1.100 # 服务端IP 
+    User test                             # 用户名 
+    IdentityFile ~/.ssh/id_rsa  #私钥路径
