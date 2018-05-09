@@ -1,0 +1,24 @@
+
+*
+Mac OS系统中就已经装有Apache Web服务器软件,所以我们只需要用命令启动它就好了。
+1,打开终端，输入命令sudo apachectl start
+2,提示输入密码，也就是你电脑的密码，输入之后按回车那么我们就可以访问本地服务服务器了。
+3,当然你可以在浏览器输入：http://127.0.0.1/测试一下
+
+//mac运行as3
+＊http://blog.csdn.net/poechant/article/details/7832059
+
+//进入资源库 command+shift+G
+/Users/MikeRiy/Library/
+
+重启Mac上的Apache服务 cd /etc/apache2/
+停止服务：sudo apachectl stop
+
+开启服务：sudo apachectl start
+
+重启服务：sudo apachectl restart
+
+
+显示Mac隐藏文件的命令：defaults write com.apple.finder AppleShowAllFiles  YES
+
+隐藏Mac隐藏文件的命令：defaults write com.apple.finder AppleShowAllFiles  NO

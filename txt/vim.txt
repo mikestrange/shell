@@ -1,0 +1,471 @@
+vim中多标签和多窗口的使用 (2012-11-30 21:11:41)转载▼
+1、打开多个窗口
+打开多个窗口的命令以下几个：
+横向切割窗口
+:new+窗口名(保存后就是文件名) 
+:split+窗口名，也可以简写为:sp+窗口名
+纵向切割窗口名
+:vsplit+窗口名，也可以简写为：vsp+窗口名
+ 
+    vim -o file1 file2 ...  #水平打开多窗口，
+    vim -O file1 file2 ...  #垂直打开多窗口,
+    vim -d file1 file2 ...  #垂直打开多窗口,并且进行比较
+    vimdiff file1 file2 ..  #等同于上一句
+ 
+2、关闭多窗口
+可以用：q!，也可以使用：close，最后一个窗口不能使用close关闭。使用close只是暂时关闭窗口，其内容还在缓存中，只有使用q!、w!或x才能真能退出。
+ 关闭窗口
+     q  或 close   #关闭当前窗口
+     only          #保留当前窗口，关闭其它所有窗口
+     qall(qa)          #退出所有窗口
+     wall          #保存所有窗口
+3、窗口切换
+:ctrl+w+j/k，通过j/k可以上下切换，或者:ctrl+w加上下左右键，还可以通过快速双击ctrl+w依次切换窗口。
+4、窗口大小调整
+纵向调整
+:ctrl+w + 纵向扩大（行数增加）
+:ctrl+w - 纵向缩小 （行数减少）
+:res(ize) num  例如：:res 5，显示行数调整为5行
+:res(ize)+num 把当前窗口高度增加num行
+:res(ize)-num 把当前窗口高度减少num行
+横向调整
+:vertical res(ize) num 指定当前窗口为num列
+:vertical res(ize)+num 把当前窗口增加num列
+:vertical res(ize)-num 把当前窗口减少num列
+5、给窗口重命名
+:f file
+6、vi打开多文件
+vi a b c
+:n 跳至下一个文件，也可以直接指定要跳的文件，如:n c，可以直接跳到c文件
+:e# 回到刚才编辑的文件
+7、文件浏览
+:Ex 开启目录浏览器，可以浏览当前目录下的所有文件，并可以选择
+:Sex 水平分割当前窗口，并在一个窗口中开启目录浏览器
+:ls 显示当前buffer情况
+8、vi与shell切换
+:shell 可以在不关闭vi的情况下切换到shell命令行
+:exit 从shell回到vi
+9. 多标签
+直接在编辑的时候输入：
+vim -p 要编辑的文件名
+如vim -p * 就是编辑当前目录的所有文件
+多个标签间进行切换时向右切换gt，向左切换用gT
+在编辑的时候想增加一个标签就可以:tabnew filename
+:tabc       关闭当前的tab
+:tabo       关闭所有其他的tab
+:tabs       查看所有打开的tab
+:tabp      前一个
+:tabn      后一个
+1. vim基本用法：模式，光标移动，查找替换，复制粘贴删除
+
+1.1 帮助
+:help
+:help command
+
+1.2 模式切换
+    命令模式     Esc, Ctrl-c, 配合光标移动可用Alt-h,Alt-j,Alt-k,Alt-l
+    编辑模式     i 在当前位置编辑 , a在当前位置后面插入，I在行首插入，A在行尾插入，o添加新行
+    可视化模式   v块模式，V行块模式，Ctrl-v列块模式
+下面的操作方式和快捷键基本上都是在命令模式下的，编辑模式按键一般只能输入文字。
+
+1.3 输入方式
+    直接按键盘编辑     如i
+    :command         如:set nu
+    执行shell命令     :!command  如:!pwd
+
+1.4 撤销,重做
+    撤销上一次的编辑操作     u, U
+    撤销未保存的全部编辑操作，重新载入文件 :e!
+    重做上一次撤销的编辑操作 Ctrl-r
+ 
+1.5 保存，退出
+    保存文件 :w
+    关闭文件 :q
+    保存并关闭文件 :wq
+    不保存强制关闭文件 :q!
+    关闭所有文件退出 :qa
+
+1.6 移屏
+        下翻页 Ctrl-f
+        上翻页 Ctrl-b
+        下翻行 Ctrl-e
+        上翻行 Ctrl-y
+ 
+1.7 光标定位快捷键
+    到指定行  :行号，行号G
+     到文件头 1G
+     到文件尾 G
+     左下上右 h,j,k,l
+     下一个字 w，上一个字 b   
+     到行首   ^
+     到行尾   $
+     行尾插入 A，添加空行 o
+
+1.8 在函数中定位光标
+[[  转到上一个位于第一列的“{”
+]]  转到下一个位于第一列的“{”
+{   转到上一个空行
+}   转到下一个空行
+
+1.9 查找当前文件
+n,N       查找到key后，n跳到后一个位置，N跳到前一个位置
+* , #     当前光标所在的词key作为关键字，精确匹配查找，相当于/\<key\>
+g*, g#    当前光标所在的词key作为关键字，忽略大小写查找，相当于/key
+/key      从当前光标位置开始向后查找key
+?key      从当前光标位置开始向前查找key
+/\<key\>，?\<key\>  精确匹配查找key
+ 
+1.10 批量替换:%s/要被取代的字串/新的字串/g
+ 
+1.11 复制粘贴删除
+      复制行 yy    复制n行 nyy
+      粘贴行 p
+      删除行 dd    删除n行 ndd
+      删除字 dw    复制字  yw
+
+      可视块选择复制：
+             进入可视化模式 v，V，Ctrl-v
+             可视化模式下，方向键选择块
+             按y复制选择的块
+
+2. 配置：显示和编辑样式，配置文件
+
+2.1 显示和编辑样式
+     在状态行显示文件名set statusline+=%f，set laststatus=2
+     显示行号 :set nu    隐藏行号 :set nonu
+     自动缩进 :set autoindent
+     c风格的缩进 :set cindent
+     显示断行符等特殊符号 :set list
+
+2.2 配置文件
+    vim自带的配置文件  /etc/vimrc
+    用户自定义的配置文件 ～/.vimrc，自己创建。把自己的配置都写这里。
+    语法高亮 syntax on
+
+ 
+3. vim用法： 多行注释，多文件，多窗格编辑，保存会话
+
+3.1 多行注释
+多行注释按键操作：
+      注释：Ctrl-v 进入列编辑模式，向下或向上移动光标，把需要注释的行的开头标记起来，然后按大写的I，再插入注释符比如"#"，按Esc，就会全部注释了。
+      删除：Ctrl-v 进入列编辑模式，向下或向上移动光标，选中注释部分，按d，就会删除注释符号。
+
+多行注释使用替换命令：
+            :%s/^/\/\//g来在全部内容的行首添加//号注释
+             :2,50s/^/\/\//g在2~50行首添加//号注释
+            反过来替换既是删除操作。
+
+3.2 编辑多个文件
+    打开多个文件 $ vim filename1 filename2
+    切换文件 :prev，:next，:prev!，:next!，first，last  ，只要切换出来过，就在缓冲区里了
+    显示打开的文件列表 :args
+
+    打开新的缓冲区看别的文件 :e filename
+    切换最近的两个文件(缓冲区) :e# 或 Ctrl-^
+    显示缓冲区的文件列表 :buffers
+    关闭其中一个(当前)文件 :bd，:bd 1，:bd 2，序号按:buffers显示的
+    切换到某个文件 :b 1，:b 2，序号按:buffers显示的
+    切换到上一个文件 :bp，:bprev
+    切换到下一个文件 :bn，:bnext   
+
+3.3 多窗口编辑
+分割窗口
+    水平分割
+       :sp //当前编辑的文件分割一个窗口再打开
+       :spfilename //分割一个窗口出来，打开文件filename
+       :split
+       :new
+
+    垂直分割
+       :vsplit
+       :vnew
+切换窗口
+    Ctrl-w 上下左右键
+    Ctrl-w h,j,k,l     //h左，j下，k上，l右  //Ctrl按下，按w松开，Ctrl松开，按h
+
+移动窗口
+    Ctrl-W H,J,K,L     //H左，J下，K上，L右  //锁定CapsLock就可以得到大写
+
+改变窗口大小
+    水平最大化当前窗口    Ctrl-w Ctrl-- //这个是特殊的：Ctrl按下，按w松开，再按-松开，最后松开Ctrl
+    等分窗口    Ctrl-w =
+    调整窗口大小    Ctrl-w +增加窗口大小一行，Ctrl-w -减少窗口大小一行
+显示命令历史窗口
+    q:或q/，退出:q
+让当前文件占据整个窗口
+    Ctrl-w o
+
+关闭其中一个(当前)窗口
+    Ctrl-w c  //其实文件还在buffers中
+让用缓冲区的文件来到分割窗口
+    Ctrl-w Ctrl-^  //保持Ctrl按下
+
+3.4 保存所在目录的环境和状态，会话
+如果在vim中已经打开了好多窗口，想要保持这个环境，等下次编辑浏览时再载入。
+:help mksession         查看mksession的帮助 
+:mksession!             保存当前的vim状态，在当前目录会产生一个会话文件Session.vim。
+$ vim -S                vim会自动载入当前目录的会话文件Session.vim，之前:mksession! 保持的状态又回来啦。
+
+:mksession! work.vim    保存当前的vim状态到会话文件work.vim
+$ vim -S work.vim       vim载入会话文件work.vim，之前:mksession! work.vim保持的状态又回来啦。
+ 
+也可在vim中手动载入会话:
+:source Session.vim     载入Session.vim保持的状态。
+:source work.vim        载入work.vim保持的状态。
+ 
+配置自动保存和载入会话
+这个配置好后，第一次在要自动保持会话的目录下进入vim，用命令:mksession! project.vim。以后使用直接在当前目录$vim即可。
+如果想打开和关闭vim时自动保存和载入会话，可以在配置文件~/.vimrc中加入：
+" auto save and load session
+let g:
+let g:OrigPWD=getcwd()
+if filereadable(g:AutoSessionFile)
+        if argc()==0
+                au VimEnter * call EnterHandler()
+                au VimLeave * call LeaveHandler()
+        endif
+endif
+function! LeaveHandler()
+        exec "mks! ".g:OrigPWD."/".g:AutoSessionFile
+endfunction
+function! EnterHandler()
+        exe "source ".g:AutoSessionFile
+endfunction
+参考vim中session自动保存及加载
+
+4. 浏览代码：ctags,Taglist,NERD_tree,cscope
+
+4.1 热门vim脚本
+http://vim.sourceforge.net 下 scripts->browse all
+ 
+4.2ctags跳转到定义处
+
+ctags是一个用来产生代码索引文件的插件，支持很多语言。
+
+可以用Ctrl-]命令跳转到函数的定义处，也可以用命令来搜索函数的定义，非常好用。
+
+安装ctags
+    如果没有安装ctags，fedora的shell下可以用 # yum -y install ctags安装。
+
+创建tags文件
+   shell下，在需要创建tags文件的目录下用 $ ctags -R，那么整个目录下的函数，宏，变量，类，结构等都加上了tags。
+
+使用ctags
+   按键跳转Ctrl-],Ctrl-t,Ctrl-o
+      在创建tags文件的目录下，用vim打开的文件中，光标移到一个被调用的函数名上，按Ctrl-]就会自动跳转到该函数的定义处，Ctrl-t返回。
+
+   命令跳转 :tags  functionname
+      在用vim打开的文件中，用命令:tags  functionname。:ta functionname
+
+   打开时搜索并跳转
+      vim -t functionname
+   多个匹配tags时跳转
+      :tnext，:tprev，:tn,:tp
+ 
+4.3Taglist函数和变量列表
+Taglist是vim的源代码浏览插件，可以以窗口方式查看函数列表，变量列表等。
+Taglist的实现依赖ctags。
+安装Taglist
+    1. 在 http://www.vim-taglist.sourceforge.net/screenshots.html 下载最新版的Taglist软件包。
+    2. 在个人用户目录下创建  .vim目录，将taglist_**.zip中的内容解压到该目录。
+    3. 进入Vim，在命令模式下输入命令 "  helptags ~/.vim/doc"即可完成Taglist的安装。
+    4. 输入命令“:Tlist”检查是否安装成功。
+
+修改配置文件
+    let Tlist_File_Fold_Auto_Close=1 除了当前窗口显示的文件，其它文件折叠。
+    let Tlist_Exit_OnlyWindow=1  如果Tlist是最后一个窗口，自动退出vim。
+
+使用 :Tlist
+    打开 Vim 之后，使用命令 :Tlist激活 Taglist窗口； 按Ctrl-w w在两个窗口来回跳转。
+    :Tlist
+    :TlistToggle
+
+Tlist快捷键
+    在Tlist列表窗口中，以函数为例
+    看函数原型        空格 
+    看函数定义        p
+    跳转到函数定义     移动到函数名处Enter
+    折叠/展开         - ，+
+    全部折叠/全部展开  =，*
+    更改列表排序方式   s
+    更新列表          u
+    放大缩小窗口      x
+    退出窗口          q
+    上/下一个文件     [[，]]
+ 
+配置:Tlist快捷键
+    .vimrc中写：
+     nnoremap <silent><F2> :TlistToggle<CR>
+
+Tlist帮助
+    在Tlist窗口按F1
+    :help Tlist             查看Tlist命令帮助
+    :help 'Tlist*'          查看Tlist选项帮助
+    :e ~/.vim/taglist.txt   直接打开文档看帮助
+ 
+4.4 NERD_tree 目录树列表
+安装NERD_tree
+  1.在vim.sourceforge.net 下载NERD_tree包。
+  2.把NERD_tree包解压到.vim下，之后会看到.vim下多了文件 doc/NERD_tree.txt，plugin/NERD_tree.vim。
+  3.进入vim，输入:NERDTree检查是否安装成功。
+使用NERDTree
+    打开 vim 之后，使用命令 :NERDTree激活 NERDTree窗口； 按Ctrl-w w在两个窗口来回跳转。
+    :NERDTree
+    :NERDTreeToggle
+NERDTree快捷键
+    o , Enter 展开/折叠目录
+    p 上一层目录
+    / 查找文件
+    q 退出
+ 
+帮助
+    ？
+    :e ~/.vim/doc/NERD_tree.txt
+ 
+忽略特定文件类型
+    配置文件中写：
+    let NERDTreeIgnore = ['.*\.o$','.*\.ko$','.*\.gz$']  忽略后缀为.o，.ko，.gz的文件。
+ 
+配置:NERDTree快捷键
+    .vimrc中写：
+    nnoremap <silent><F3> :NERDTreeToggle<CR>
+
+4.5 bufexplorer 缓冲区文件列表
+安装bufexplorer类似NERD_tree。
+使用BufExplorer
+    :BufExplorer
+配置:BufExplorer快捷键
+    .vimrc中写：
+    nnoremap <silent><F4> :BufExplorer<CR>
+ 
+4.6cscope在整个目录查找函数被调用位置
+cscope可以在整个目录查找函数定义，查找函数被调用位置等，非常好用。
+安装cscope
+    fedora下，# yum -y install cscope
+生成cscope数据库
+    在所要的目录下
+    $ find . -name '*.c' -or -name '*.h' -or -name '*.S' | cscope -Rbq
+    在当前目录会产生3个文件cscope.out，cscope.in.out，cscope.po.out。
+载入cscope数据库
+    在当前目录进入vim
+    :cs add cscope.out
+使用cscope查找整个目录
+    :cs help
+    :cs find g timer_interrupt  查找timer_interrupt的定义
+    :cs find c timer_interrupt  查找调用timer_interrupt的地方
+    :cs find e run_timer          查找关键字run_timer
+    find 可以简写为f
+多个匹配间跳转
+    :cnext,cn
+修改配置文件
+    set nocst                    让跳转到定义的命令:ta 和 Ctrl-]调用ctags的tag，帮助:help nocst。
+    set csto=1                   优先使用ctags的tag       
+    "set cscopequickfix=s-,c-,d-,i-,t-,e-    使:cs find c 时直接跳转而不是列表，看个人喜好要不要设这个。
+    nnoremap <C-\> :cs find c <C-R>=expand("<cword>")<CR><CR> 光标放在函数上，快捷键Ctrl-\跳转到调用这个函数的地方。    
+    nnoremap <C-_> :cs find g <C-R>=expand("<cword>")<CR><CR> 光标放在函数上，快捷键Ctrl-_跳转到函数定义处或列出多个定义
+
+5. 编译并修改代码错误
+quickfix模式内置在vim中，编译后记录了出错的位置信息，用来定位错误位置。
+
+编译
+    调用当前目录下的Makefile文件编译    :make
+        改变编译调用的命令                                   :set makeprg=gcc\ -g\ test.c\ -o\ test ，没有写Makefile时用
+
+快速定位代码错误
+    列出错误        :cl
+   下一个错误      :cn
+   上一个错误      :cp
+   从头开始        :cnew
+   打开错误列表窗口 :cw
+   关闭错误列表窗口 :ccl
+ 
+6. 调用gdb来debug:vimgdb
+安装vimgdb
+      vimgdb需要以补丁形式打在vim版本上，下载vim的source，对应版本的vimgdb补丁，然后按vimgdb的说明文件安装即可。
+ 
+配置按键映射
+    配置文件里加  map <F7> :run macros/gdb_mappings.vim<CR>
+    这样按F7，按键映射就可以在调试模式和普通模式切换了。
+
+使用vimgdb
+   按键映射    <F7> 或 :run macros/gdb_mappings.vim
+   打开gdb命令窗格      空格
+   打开gdb输出窗格      在命令窗格键入gdb，按Enter
+   载入可执行文件       空格打开gdb命令窗格，file test，test就是编译后生成的可执行文件
+   设置断点    Ctrl-B
+   开始运行    R
+   继续执行    S，Ctrl-N，C
+   结束       F
+   退出       Q
+
+变量监视窗口
+    创建变量监视窗       :bel 30vsplit gdb-variables 
+    选中变量名到监视窗    v命令选中变量，Ctrl-P添加到变量监视窗格
+    输入变量名到监视窗    空格打开gdb命令窗格，输入createvar 变量名
+
+在gdb输出窗格显示，查看
+    locals变量  L，info locals
+    函数stack   W，where
+    断点位置    B，info breakpoints
+    寄存器      info registers
+
+参考：vi/vim使用进阶: 在VIM中使用GDB调试 – 使用vimgdb
+
+7. 其它
+7.1 中文乱码问题
+先安装运行zhcon
+ 
+8. 我的vim
+ 
+安装了插件ctags,cscope,脚本Taglist,NERD_tree,bufexplorer，
+按这里配置好之后，F2弹出函数列表，F3弹出目录列表，Ctrle-],Ctrl--跳转到函数定义，Ctrl-\跳转到函数引用，很方便。
+我的配置文件～/.vimrc
+---------------------------------------------------------------------
+  1   syntax on
+  2 
+  3   set nu
+  4   set autoindent
+  5   set cindent
+  6 
+  7   " status line
+  8   set statusline+=%f
+  9   set laststatus=2
+ 10 
+ 11   nnoremap <silent><F2> :TlistToggle<CR>
+ 12   nnoremap <silent><F3> :NERDTreeToggle<CR>
+ 13   nnoremap <silent><F4> :BufExplorer<CR>
+ 14 
+ 15   " cscope
+ 16   set nocst
+ 17   set csto=1
+ 18   nnoremap <C-\> :cscope find c <C-R>=expand("<cword>")<CR><CR>
+ 19   nnoremap <C-_> :cscope find g <C-R>=expand("<cword>")<CR><CR>
+ 20   "set cscopequickfix=s-,c-,d-,i-,t-,e-
+ 21 
+ 22   " Tlist
+ 23   let Tlist_File_Fold_Auto_Close=1
+ 24   let Tlist_Exit_OnlyWindow=1
+ 25   let Tlist_WinWidth=30
+ 26   let Tlist_Inc_Winwidth=1
+ 27 
+ 28   " NERDTree
+ 29   let NERDTreeIgnore = ['.*\.o$','.*\.ko$','.*\.gz$']
+ 30 
+ 31   " auto save and load session
+ 32   let g:
+ 33   let g:
+ 34   let g:OrigPWD=getcwd()
+ 35   if filereadable(g:AutoSessionFile)
+ 36           if argc()==0
+ 37                   au VimEnter * call EnterHandler()
+ 38                   au VimLeave * call LeaveHandler()
+ 39           endif
+ 40   endif
+ 41   function! LeaveHandler()
+ 42           exec "mks! ".g:OrigPWD."/".g:AutoSessionFile
+ 43   endfunction
+ 44   function! EnterHandler()
+ 45           exe "source ".g:AutoSessionFile
+ 46   endfunction
+ 47 
+ 48   map <F7> :run macros/gdb_mappings.vim<CR>
