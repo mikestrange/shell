@@ -15,6 +15,7 @@ git clone path就可以了
     sudo chgrp -R git * 
     cd test.git 
     sudo git config core.sharedRepository group
+chown -R 
 
 3、测试一下，通过SSH远程操作Git库；
     git clone test@192.168.1.100:/gitProj/test.git
