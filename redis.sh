@@ -33,7 +33,7 @@ cp redis.conf /etc/
 
 # 为了能让Redis在服务器重启后自动启动，需要将启动命令写入开机启动项：
 #echo "/usr/local/bin/redis-server /etc/redis.conf" >>/etc/rc.local
-
+#chmod +x /etc/rc.d/rc.local    #该文件可执行才能启动服务
 
 #远程访问修改
 # bind 127.0.0.1改为 #bind 127.0.0.1

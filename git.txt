@@ -2,12 +2,12 @@
 
 mkdir test.git
 git init --bare
-chmod -R 0777 objects
+＃chmod -R 0777 objects
 *进行初始化(建议使用–bare,要不然会影响文件的提交)
 
 直接
 git clone path
-git clone git.client.alias:test
+git clone git@192.168.0.100:test
 
 2、创建Git服务端目录，并赋予第1步选择的用户(组)可读写权限；
     mkdir sudo /gitProj/test.git
