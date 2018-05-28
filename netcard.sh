@@ -21,8 +21,8 @@
 
 # chkconfig |grep NetworkManager
 # chkconfig NetworkManager off
-# service NetworkManager stop
-# service network restart
+# systemctl restart NetworkManager
+# systemctl restart network
 
 
 
