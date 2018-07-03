@@ -44,3 +44,13 @@ scp id_rsa.pub test@192.168.0.100:~/.ssh
     HostName 192.168.1.100 	# 服务端IP 
     User test                             	# 用户名 
     IdentityFile ~/.ssh/id_rsa  		#私钥路径
+    
+1、把专用密钥添加到 ssh-agent 的高速缓存中：
+
+ssh-add ~/.ssh/id_dsa
+2、从ssh-agent中删除密钥：
+
+ssh-add -d ~/.ssh/id_xxx.pub
+3、查看ssh-agent中的密钥：
+
+ssh-add -l    
