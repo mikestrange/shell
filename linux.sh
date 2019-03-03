@@ -39,6 +39,16 @@ yum install screen
 yum install php php-devel
 #php扩展
 yum install php-mysql php-gd php-ldap php-odbc php-pear php-xml php-xmlrpc
+###=================php升级到5.6 默认5.4=================
+rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm  
+rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+#删除现在的php版本
+yum remove php-common
+#安装php 5.6
+yum install -y php56w php56w-opcache php56w-xml php56w-mcrypt php56w-gd php56w-mysql php56w-intl php56w-mbstring 
+#查看新的php版本
+php -v
+###=================php升级到5.6 默认5.4=================
 
 yum list installed | grep mysql
 yum install mysql
