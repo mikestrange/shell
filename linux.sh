@@ -17,23 +17,6 @@ yum install httpd httpd-devel
 # (CentOS7)
 #systemctl restart httpd
 
-###================phpMyAdmin安装===================
-yum install phpmyadmin
-yum install phpmyadmin php-mcrypt
-#移动到httpd的路径下
-cd /var/www/html
-#映射文件
-sudo ln -s /usr/share/phpMyAdmin phpmyadmin
-#备份配置
-cp /var/www/html/phpmyadmin/libraries/config.default.php /var/www/html/phpmyadmin/config.inc.php
-#链接mysql的配置 可以不管
-#vi /var/www/html/phpmyadmin/config.inc.php
-#设置数据库密码(搜索): /password
-#外网权限修改
-#vi /etc/httpd/conf.d/phpMyAdmin.conf
-#注释 Require ip * 增加 Require all granted
-###================phpMyAdmin安装===================
-
 #git
 #yum install git
 #后台运行(已经无用了)
@@ -56,7 +39,22 @@ php -v
 systemctl restart httpd
 ###=================php升级到5.6 默认5.4=================
 
-
+###================phpMyAdmin安装===================
+yum install phpmyadmin
+yum install phpmyadmin php-mcrypt
+#移动到httpd的路径下
+cd /var/www/html
+#映射文件
+sudo ln -s /usr/share/phpMyAdmin phpmyadmin
+#备份配置
+cp /var/www/html/phpmyadmin/libraries/config.default.php /var/www/html/phpmyadmin/config.inc.php
+#链接mysql的配置 可以不管
+#vi /var/www/html/phpmyadmin/config.inc.php
+#设置数据库密码(搜索): /password
+#外网权限修改
+#vi /etc/httpd/conf.d/phpMyAdmin.conf
+#注释 Require ip * 增加 Require all granted
+###================phpMyAdmin安装===================
 
 ###=================mysql安装====================
 yum list installed | grep mysql
