@@ -55,6 +55,7 @@ yum install mysql-devel
 #systemctl restart mysqld
 
 #登录mysql: mysql -uroot -p
+#use mysql;
 #设置mysql密码: mysadmin -u root -p password 123456
 #(或者)刷新密码:update user set password=password('123456') where user='root';
 #设置远程访问:GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "123456";
