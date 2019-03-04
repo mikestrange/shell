@@ -3,6 +3,8 @@
 
 #yum install ssh
 #yum install openssh-server
+## 解决-bash: scp: command not found
+#yum install openssh-clients
 
 cd ~
 #mkdir .ssh
