@@ -13,6 +13,8 @@ cd ~
 
 #安装服务器
 yum install httpd httpd-devel
+#开机启动http
+systemctl enable httpd
 
 # (CentOS6)
 #service httpd restart
@@ -75,6 +77,8 @@ wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
 rpm -ivh mysql-community-release-el7-5.noarch.rpm
 yum install mysql-community-server
 systemctl restart mysqld
+#开机启动mysql
+systemctl enable mysqld
 
 #登录mysql: mysql -uroot -p
 #use mysql;
