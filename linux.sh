@@ -51,9 +51,9 @@ cd /var/www/html
 #映射文件
 sudo ln -s /usr/share/phpMyAdmin phpmyadmin
 #备份配置
-cp /var/www/html/phpmyadmin/libraries/config.default.php /var/www/html/phpmyadmin/config.inc.php
+cp /usr/share/phpMyAdmin/libraries/config.default.php /usr/share/phpMyAdmin/config.inc.php
 #链接mysql的配置 可以不管
-#vi /var/www/html/phpmyadmin/config.inc.php
+#vi /usr/share/phpMyAdmin/config.inc.php
 #设置数据库密码(搜索): /password
 #外网权限修改
 #vi /etc/httpd/conf.d/phpMyAdmin.conf
