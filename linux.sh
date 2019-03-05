@@ -39,6 +39,11 @@ yum remove php-common
 yum install -y php56w php56w-opcache php56w-xml php56w-mcrypt php56w-gd php56w-mysql php56w-intl php56w-mbstring 
 #查看新的php版本
 php -v
+#解决php无法写文件的权限
+setenforce 0     		        #这个必须是0才有权限
+chmod -R 755 /var/www/html	    #设置为可读写
+chown -R apache /var/www/html	#查看httpd.conf中的User/Group
+ls -l /var/www/html			    #查看一下权限
 #最后记得重启httpd
 systemctl restart httpd
 ###=================php升级到5.6 默认5.4=================
